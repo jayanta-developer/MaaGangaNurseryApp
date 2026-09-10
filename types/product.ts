@@ -1,5 +1,7 @@
 export type Product = {
   id: number;
+  slug: string;
+  productType: "plant" | "garden-care";
   name: string;
   category: string;
   price: string;
@@ -8,4 +10,10 @@ export type Product = {
   reviews: number;
   image: string;
   tag?: string;
+  originalPrice?: string;
+  light: string;
+  watering: string;
+  height: string;
+  potSize: string;
+  care: string[];
 };

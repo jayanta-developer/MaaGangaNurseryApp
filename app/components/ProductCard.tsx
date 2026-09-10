@@ -5,7 +5,7 @@ import styles from "./storefront.module.css";
 export function ProductCard({ product }: { product: Product }) {
   return (
     <article className={styles.productCard}>
-      <Link className={styles.productImageWrap} href={`#product-${product.id}`} aria-label={`View ${product.name}`}>
+      <Link className={styles.productImageWrap} href={`/products/${product.slug}`} aria-label={`View ${product.name}`}>
         <span className={styles.productImage} style={{ backgroundImage: `url("${product.image}")` }} />
         {product.tag && <span className={styles.productTag}>{product.tag}</span>}
         <span className={styles.wishlist} aria-label={`Save ${product.name}`} role="img">♡</span>
