@@ -464,7 +464,7 @@
 .rating {
   color: var(--ink);
   font-size: 10px;
-  margin-top: auto;
+  margin-top: 0px;
 }
 .rating span {
   color: var(--accent);
