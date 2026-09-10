@@ -1,0 +1,47 @@
+import type { Product } from "@/types/product";
+
+export const products: Product[] = [
+  {
+    id: 1,
+    name: "Mango grafted plant",
+    category: "Fruit plant",
+    price: "₹328",
+    description: "Sun-loving sapling for sweet summer fruit.",
+    rating: "4.9",
+    reviews: 124,
+    image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=900&q=85",
+    tag: "Popular",
+  },
+  {
+    id: 2,
+    name: "Desi rose plant",
+    category: "Flower plant",
+    price: "₹86",
+    description: "Fragrant blooms for sunny balconies.",
+    rating: "4.8",
+    reviews: 86,
+    image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=85",
+    tag: "Bestseller",
+  },
+  {
+    id: 3,
+    name: "Jackfruit sapling",
+    category: "Fruit plant",
+    price: "₹64",
+    description: "A hardy young tree for spacious gardens.",
+    rating: "4.7",
+    reviews: 52,
+    image: "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    id: 4,
+    name: "Monstera indoor plant",
+    category: "Indoor plant",
+    price: "₹118",
+    description: "A lush, easy-care leaf for bright rooms.",
+    rating: "5.0",
+    reviews: 38,
+    image: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=900&q=85",
+    tag: "Limited",
+  },
+];

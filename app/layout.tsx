@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Northstar Studio",
-  description: "A polished Next.js landing page and blog experience",
+  title: "Maa Ganga Nursery",
+  description: "Welcome to Maa Ganga Nursery — your one-stop destination for healthy and beautiful plants! 🌿 We offer a wide variety of small and big flowering plants, fruit plants, garden plants, and more for every type of garden. 🌸🍊🌳Bring nature closer to your home with fresh, healthy, and carefully grown plants from Maa Ganga Nursery. 🌱💚",
 };
 
 export default function RootLayout({
