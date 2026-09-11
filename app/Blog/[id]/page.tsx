@@ -8,11 +8,17 @@ export default async function BlogPostPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  // Temporary: keep individual blog posts disabled with the blog route.
+  if (process.env.NEXT_PUBLIC_BLOG_ENABLED !== "true") {
+    notFound();
+  }
+
   const { id } = await params;
   const post = getBlogPost(Number(id));
 
   if (!post) {
     notFound();
+    return null;
   }
 
   return (
