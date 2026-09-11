@@ -1,9 +1,13 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { getBlogPosts } from "./data";
 import BlogClient from "./BlogClient";
 import styles from "./style.module.css";
 
 export default async function BlogPage() {
+  // Temporary: keep the blog route disabled without deleting its implementation.
+  notFound();
+
   const data = getBlogPosts();
 
   return (

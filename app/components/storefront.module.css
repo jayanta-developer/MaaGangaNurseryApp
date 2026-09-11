@@ -15,6 +15,7 @@
 
 .header,
 .content {
+  box-sizing: border-box;
   max-width: 1320px;
   margin: 0 10%;
   padding-left: 44px;
@@ -293,6 +294,10 @@
 .launchSection {
   padding-top: 90px;
 }
+.categorySection {
+  margin-left: -16px;
+  margin-right: -16px;
+}
 .launchSection + .launchSection {
   background: #f1f3ed;
   margin-left: -44px;
@@ -528,8 +533,11 @@
 @media (max-width: 900px) {
   .header,
   .content {
+    margin-left: auto;
+    margin-right: auto;
     padding-left: 24px;
     padding-right: 24px;
+    width: calc(100% - 48px);
   }
   .navigation {
     margin-left: 30px;
@@ -543,12 +551,22 @@
   .categoryGrid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .categoryCard:nth-child(n + 4) {
-    display: none;
-  }
   .productGrid {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 42px;
+  }
+  .productImage {
+    height: clamp(240px, 34vw, 300px);
+  }
+  .featured {
+    grid-template-columns: 1fr 1fr;
+    min-height: 360px;
+  }
+  .featuredImage {
+    min-height: 360px;
+  }
+  .featuredCopy {
+    padding: 40px 10%;
   }
   .launchSection + .launchSection {
     margin-left: -24px;
@@ -561,6 +579,13 @@
 @media (max-width: 600px) {
   .header {
     height: 72px;
+    padding-left: 14px;
+    padding-right: 14px;
+    width: 96%;
+  }
+  .wordmark {
+    font-size: 20px;
+    letter-spacing: -1px;
   }
   .navigation {
     display: none;
@@ -571,7 +596,7 @@
   .searchBox {
     padding-left: 8px;
     padding-right: 8px;
-    width: 120px;
+    width: 105px;
   }
   .suggestions {
     min-width: 280px;
@@ -580,6 +605,7 @@
   }
   .hero {
     height: 610px;
+    width: 100%;
   }
   .heroImage {
     background-position: 62% center;
@@ -596,6 +622,21 @@
   .launchSection {
     padding-top: 64px;
   }
+  .content {
+    padding-left: 0;
+    padding-right: 0;
+    width: 96%;
+  }
+  .categorySection {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .launchSection + .launchSection {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
   .sectionHeading {
     align-items: start;
     flex-direction: column;
@@ -605,11 +646,17 @@
     display: none;
   }
   .categoryGrid {
-    gap: 10px;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 2px 2px 8px;
+    scrollbar-width: thin;
+  }
+  .categoryCard {
+    flex: 0 0 142px;
   }
   .categoryImage {
-    height: 120px;
+    height: 150px;
   }
   .categoryName {
     font-size: 15px;
@@ -639,5 +686,19 @@
   }
   .featuredCopy {
     padding: 42px 28px 50px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 96%;
+  }
+  .wordmark {
+    font-size: 18px;
+  }
+  .searchBox {
+    width: 88px;
   }
 }

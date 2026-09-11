@@ -50,12 +50,6 @@ export function Header() {
             </div>
           )}
         </div>
-        <Link className={styles.accountLink} href="#account">Sign in</Link>
-        <Link className={styles.cartButton} href="#cart" aria-label="Plant cart, 0 items">
-          <span aria-hidden="true">□</span>
-          <span>Bag</span>
-          <b>0</b>
-        </Link>
       </div>
     </header>
   );
