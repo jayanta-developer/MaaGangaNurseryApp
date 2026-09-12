@@ -1,3 +1,22 @@
+# Maa Ganga Nursery
+
+## Admin catalogue
+
+Set these values in `.env` before opening `/admin`:
+
+```env
+ADMIN_PASSWORD=choose-a-long-private-password
+ADMIN_SESSION_SECRET=choose-a-long-random-secret
+```
+
+Also set the MongoDB connection values:
+
+```env
+DB_URL=your_mongodb_connection_string
+DB_NAME=maa-ganga-nursery
+```
+
+The admin panel supports creating, editing, and deleting products. Each product requires at least three image URLs. Products are stored in MongoDB and are read by the storefront and order API at request time.
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

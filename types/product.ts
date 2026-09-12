@@ -9,6 +9,7 @@ export type Product = {
   rating: string;
   reviews: number;
   image: string;
+  images: string[];
   tag?: string;
   originalPrice?: string;
   light: string;
@@ -16,4 +17,6 @@ export type Product = {
   height: string;
   potSize: string;
   care: string[];
+  createdAt?: string;
+  updatedAt?: string;
 };

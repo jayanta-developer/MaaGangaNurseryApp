@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import type { Product } from "@/types/product";
 import styles from "./product-detail.module.css";
@@ -8,14 +8,20 @@ import styles from "./product-detail.module.css";
 export function ProductDetail({ product }: { product: Product }) {
   const isGardenCare = product.productType === "garden-care";
   const [selectedImage, setSelectedImage] = useState(product.image);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [isOrderOpen, setIsOrderOpen] = useState(false);
   const [isOrderSubmitted, setIsOrderSubmitted] = useState(false);
 
-  const gallery = [
-    product.image,
-    `${product.image}&sat=-10`,
-    `${product.image}&flip-h`,
-  ];
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsLightboxOpen(false);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [isLightboxOpen]);
+
+  const gallery = product.images;
 
   return (
     <main className={styles.page}>
@@ -25,9 +31,9 @@ export function ProductDetail({ product }: { product: Product }) {
 
       <div className={styles.productLayout}>
         <section className={styles.gallery} aria-label={`${product.name} image gallery`}>
-          <div className={styles.mainImage} style={{ backgroundImage: `url("${selectedImage}")` }}>
+          <button className={styles.mainImage} type="button" onClick={() => setIsLightboxOpen(true)} aria-label={`Open ${product.name} image full screen`} style={{ backgroundImage: `url("${selectedImage}")` }}>
             {product.tag && <span className={styles.tag}>{product.tag}</span>}
-          </div>
+          </button>
           <div className={styles.thumbnails}>
             {gallery.map((image, index) => (
               <button className={selectedImage === image ? styles.thumbnailActive : styles.thumbnail} key={image} onClick={() => setSelectedImage(image)} aria-label={`View product image ${index + 1}`}>
@@ -39,13 +45,13 @@ export function ProductDetail({ product }: { product: Product }) {
 
         <section className={styles.summary}>
           <p className={styles.category}>{product.category}</p>
-          <h1>{product.name}</h1>
+          <p className={styles.productTitle}>{product.name}</p>
           <div className={styles.rating}><span aria-hidden="true">★★★★★</span> <b>{product.rating}</b> <a href="#reviews">{product.reviews} customer reviews</a></div>
           <p className={styles.description}>{product.description} {isGardenCare ? "Selected to help you grow and care for a healthier garden." : "Carefully selected and nurtured at Maa Ganga Nursery."}</p>
 
           <div className={styles.priceRow}>
-            <strong>{product.price}</strong>
-            {product.originalPrice && <><s>{product.originalPrice}</s><span className={styles.discount}>Save {discount(product.price, product.originalPrice)}%</span></>}
+            <strong>₹{product.price}</strong>
+            {product.originalPrice && <><s>₹{product.originalPrice}</s><span className={styles.discount}>Save {discount(product.price, product.originalPrice)}%</span></>}
           </div>
           <p className={styles.shipping}>Inclusive of taxes <span>·</span> Secure nursery packaging <span>·</span> Dispatches in 2–4 days</p>
 
@@ -85,6 +91,13 @@ export function ProductDetail({ product }: { product: Product }) {
           onClose={() => setIsOrderOpen(false)}
           onSubmit={() => setIsOrderSubmitted(true)}
         />
+      )}
+
+      {isLightboxOpen && (
+        <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label={`${product.name} full-screen image`} onMouseDown={(event) => { if (event.target === event.currentTarget) setIsLightboxOpen(false); }}>
+          <button className={styles.lightboxClose} type="button" onClick={() => setIsLightboxOpen(false)} aria-label="Close full-screen image">×</button>
+          <div className={styles.lightboxImage} style={{ backgroundImage: `url("${selectedImage}")` }} />
+        </div>
       )}
     </main>
   );

@@ -1,0 +1,231 @@
+[
+  {
+    "id": 1,
+    "slug": "mango-grafted-plant",
+    "productType": "plant",
+    "name": "Mango grafted plant",
+    "category": "Fruit plant",
+    "price": "₹328",
+    "description": "Sun-loving sapling for sweet summer fruit.",
+    "rating": "4.9",
+    "reviews": 124,
+    "image": "https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=900&q=85",
+    "images": [
+      "https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=900&q=85&sat=-10",
+      "https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=900&q=85&flip-h"
+    ],
+    "tag": "Popular",
+    "originalPrice": "₹420",
+    "light": "6+ hours of sunlight",
+    "watering": "Twice a week",
+    "height": "45–60 cm",
+    "potSize": "10 inch nursery pot",
+    "care": [
+      "Place in bright, direct sunlight for healthy growth.",
+      "Water when the top 2 inches of soil feel dry.",
+      "Feed with fruit plant fertilizer once every 45 days.",
+      "Move to a larger pot or garden soil after 6–8 months."
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "desi-rose-plant",
+    "productType": "plant",
+    "name": "Desi rose plant",
+    "category": "Flower plant",
+    "price": "₹86",
+    "description": "Fragrant blooms for sunny balconies.",
+    "rating": "4.8",
+    "reviews": 86,
+    "image": "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=85",
+    "images": [
+      "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=85&sat=-10",
+      "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=85&flip-h"
+    ],
+    "tag": "Bestseller",
+    "originalPrice": "₹120",
+    "light": "4–6 hours of sunlight",
+    "watering": "Every 2–3 days",
+    "height": "30–45 cm",
+    "potSize": "8 inch nursery pot",
+    "care": [
+      "Keep in morning sunlight with good air circulation.",
+      "Water deeply when the top inch of soil is dry.",
+      "Remove faded flowers to encourage fresh blooms.",
+      "Use rose fertilizer every 30 days during the growing season."
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "jackfruit-sapling",
+    "productType": "plant",
+    "name": "Jackfruit sapling",
+    "category": "Fruit plant",
+    "price": "₹64",
+    "description": "A hardy young tree for spacious gardens.",
+    "rating": "4.7",
+    "reviews": 52,
+    "image": "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=900&q=85",
+    "images": [
+      "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=900&q=85&sat=-10",
+      "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=900&q=85&flip-h"
+    ],
+    "originalPrice": "₹90",
+    "light": "6–8 hours of sunlight",
+    "watering": "Twice a week",
+    "height": "40–55 cm",
+    "potSize": "10 inch nursery pot",
+    "care": [
+      "Plant in a spacious, sunny spot with loose soil.",
+      "Water regularly without letting the soil stay soggy.",
+      "Add compost every 60 days for strong root growth.",
+      "Protect the young sapling from strong winds."
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "monstera-indoor-plant",
+    "productType": "plant",
+    "name": "Monstera indoor plant",
+    "category": "Indoor plant",
+    "price": "₹118",
+    "description": "A lush, easy-care leaf for bright rooms.",
+    "rating": "5.0",
+    "reviews": 38,
+    "image": "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=900&q=85",
+    "images": [
+      "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=900&q=85&sat=-10",
+      "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=900&q=85&flip-h"
+    ],
+    "tag": "Limited",
+    "originalPrice": "₹150",
+    "light": "Bright, indirect sunlight",
+    "watering": "Once a week",
+    "height": "35–50 cm",
+    "potSize": "8 inch nursery pot",
+    "care": [
+      "Keep near a bright window away from harsh afternoon sun.",
+      "Let the top 2–3 inches of soil dry before watering.",
+      "Wipe the large leaves gently to remove dust.",
+      "Rotate the pot every week for even growth."
+    ]
+  },
+  {
+    "id": 101,
+    "slug": "organic-potting-soil",
+    "productType": "garden-care",
+    "name": "Organic potting soil",
+    "category": "Soil & compost",
+    "price": "₹180",
+    "originalPrice": "₹220",
+    "description": "A rich, airy mix for healthy roots and new growth.",
+    "rating": "4.9",
+    "reviews": 74,
+    "image": "https://images.unsplash.com/photo-1585314062604-1a357de8b000?auto=format&fit=crop&w=900&q=85",
+    "images": [
+      "https://images.unsplash.com/photo-1585314062604-1a357de8b000?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1585314062604-1a357de8b000?auto=format&fit=crop&w=900&q=85&sat=-10",
+      "https://images.unsplash.com/photo-1585314062604-1a357de8b000?auto=format&fit=crop&w=900&q=85&flip-h"
+    ],
+    "tag": "Bestseller",
+    "light": "For indoor and outdoor use",
+    "watering": "Moisten before planting",
+    "height": "Feeds plants for 3–4 months",
+    "potSize": "5 kg bag",
+    "care": [
+      "Loosen the soil before adding it to a pot or bed.",
+      "Mix with garden soil in a 1:1 ratio for outdoor plants.",
+      "Water gently after planting to settle the roots.",
+      "Store the sealed bag in a dry, shaded place."
+    ]
+  },
+  {
+    "id": 102,
+    "slug": "terracotta-garden-tub",
+    "productType": "garden-care",
+    "name": "Terracotta garden tub",
+    "category": "Pots & planters",
+    "price": "₹540",
+    "originalPrice": "₹650",
+    "description": "A breathable, hand-finished home for growing plants.",
+    "rating": "4.8",
+    "reviews": 48,
+    "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=900&q=85",
+    "images": [
+      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=900&q=85&sat=-10",
+      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=900&q=85&flip-h"
+    ],
+    "tag": "New",
+    "light": "Best for balconies and gardens",
+    "watering": "Drainage hole included",
+    "height": "12 inch diameter",
+    "potSize": "One terracotta tub",
+    "care": [
+      "Add a layer of stones before filling with potting mix.",
+      "Choose a plant that fits the 12-inch growing space.",
+      "Lift gently from the rim when moving the tub.",
+      "Keep the drainage hole clear after each watering."
+    ]
+  },
+  {
+    "id": 103,
+    "slug": "vermicompost-manure",
+    "productType": "garden-care",
+    "name": "Natural vermicompost",
+    "category": "Plant nutrition",
+    "price": "₹145",
+    "description": "Nutrient-rich organic manure made for thriving plants.",
+    "rating": "4.9",
+    "reviews": 61,
+    "image": "https://images.unsplash.com/photo-1599685315640-7e1f1a6a5a9e?auto=format&fit=crop&w=900&q=85",
+    "images": [
+      "https://images.unsplash.com/photo-1599685315640-7e1f1a6a5a9e?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1599685315640-7e1f1a6a5a9e?auto=format&fit=crop&w=900&q=85&sat=-10",
+      "https://images.unsplash.com/photo-1599685315640-7e1f1a6a5a9e?auto=format&fit=crop&w=900&q=85&flip-h"
+    ],
+    "tag": "Organic",
+    "light": "Suitable for all plants",
+    "watering": "Water after applying",
+    "height": "Feeds soil for 6 weeks",
+    "potSize": "2 kg pack",
+    "care": [
+      "Add two handfuls around the base of a medium plant.",
+      "Mix gently into the top layer of soil.",
+      "Apply once every 30–45 days during active growth.",
+      "Keep the pack sealed in a cool, dry place."
+    ]
+  },
+  {
+    "id": 104,
+    "slug": "garden-hand-tool-set",
+    "productType": "garden-care",
+    "name": "Garden hand tool set",
+    "category": "Garden tools",
+    "price": "₹390",
+    "originalPrice": "₹420",
+    "description": "Three sturdy tools for everyday planting and pruning.",
+    "rating": "4.7",
+    "reviews": 35,
+    "image": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=85",
+    "images": [
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=85&sat=-10",
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=85&flip-h"
+    ],
+    "light": "For pot and garden work",
+    "watering": "Rinse after use",
+    "height": "Trowel, fork and pruner",
+    "potSize": "One 3-piece set",
+    "care": [
+      "Clean soil from the tools after each use.",
+      "Dry the metal surfaces before storing.",
+      "Keep the pruner blade sharp for clean cuts.",
+      "Store away from rain and direct moisture."
+    ]
+  }
+]

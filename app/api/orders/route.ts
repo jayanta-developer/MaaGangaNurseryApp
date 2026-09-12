@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { products } from "@/data/products";
+import { getProducts } from "@/lib/products";
 
 type OrderPayload = {
   productSlug?: unknown;
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     const address = isText(body.address, 500) ? body.address.trim() : "";
     const pinCode = isText(body.pinCode, 6) ? body.pinCode.trim() : "";
     const quantity = Number(body.quantity);
-    const product = products.find((item) => item.slug === productSlug);
+    const product = (await getProducts()).find((item) => item.slug === productSlug);
 
     if (!product || !name || !/^[0-9]{10}$/.test(phone) || !/^[0-9]{6}$/.test(pinCode) || !Number.isInteger(quantity) || quantity < 1 || quantity > 20 || !address) {
       return NextResponse.json({ success: false, message: "Please check the order details and try again." }, { status: 400 });

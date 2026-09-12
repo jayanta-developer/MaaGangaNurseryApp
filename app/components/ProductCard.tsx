@@ -8,7 +8,6 @@ export function ProductCard({ product }: { product: Product }) {
       <Link className={styles.productImageWrap} href={`/products/${product.slug}`} aria-label={`View ${product.name}`}>
         <span className={styles.productImage} style={{ backgroundImage: `url("${product.image}")` }} />
         {product.tag && <span className={styles.productTag}>{product.tag}</span>}
-        <span className={styles.wishlist} aria-label={`Save ${product.name}`} role="img">♡</span>
       </Link>
       <div className={styles.productDetails}>
         <div className={styles.productTopline}>
@@ -16,7 +15,7 @@ export function ProductCard({ product }: { product: Product }) {
             <p className={styles.productCategory}>{product.category}</p>
             <h3>{product.name}</h3>
           </div>
-          <strong>{product.price}</strong>
+          <strong>{formatPrice(product.price)}</strong>
         </div>
         <p className={styles.productDescription}>{product.description}</p>
         <div className={styles.rating} aria-label={`${product.rating} out of 5 stars, ${product.reviews} reviews`}>
@@ -25,4 +24,8 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
     </article>
   );
+}
+
+function formatPrice(price: string) {
+  return price.trim().startsWith("₹") ? price : `₹${price.trim()}`;
 }
