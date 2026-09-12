@@ -1,14 +1,17 @@
 import { notFound } from "next/navigation";
 import { Header } from "@/app/components/Header";
-import { products } from "@/data/products";
+import { getProducts } from "@/lib/products";
 import { ProductDetail } from "./ProductDetail";
 
-export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
+export const dynamic = "force-dynamic";
+
+export async function generateStaticParams() {
+  return (await getProducts()).map((product) => ({ slug: product.slug }));
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const products = await getProducts();
   const product = products.find((item) => item.slug === slug);
 
   if (!product) notFound();

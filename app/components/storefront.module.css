@@ -168,6 +168,44 @@
   line-height: 1.5;
   margin: 10px;
 }
+.pagination {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 46px;
+  padding-top: 20px;
+}
+.pagination a,
+.paginationDisabled {
+  color: var(--muted);
+  font-size: 11px;
+  text-decoration: none;
+}
+.pagination a:hover {
+  color: var(--ink);
+}
+.paginationDisabled {
+  opacity: 0.35;
+}
+.pageNumbers {
+  display: flex;
+  gap: 8px;
+}
+.pageNumber,
+.pageNumberActive {
+  align-items: center;
+  border: 1px solid var(--line);
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  width: 30px;
+}
+.pageNumberActive {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff !important;
+}
 .cartButton {
   align-items: center;
   color: var(--ink);
@@ -410,19 +448,6 @@
   position: absolute;
   text-transform: uppercase;
   top: 12px;
-}
-.wishlist {
-  align-items: center;
-  background: rgba(251, 250, 247, 0.8);
-  border-radius: 50%;
-  display: flex;
-  font-size: 20px;
-  height: 34px;
-  justify-content: center;
-  position: absolute;
-  right: 12px;
-  top: 12px;
-  width: 34px;
 }
 .productDetails {
   background: var(--paper);
@@ -700,5 +725,8 @@
   }
   .searchBox {
     width: 88px;
+  }
+  .productGrid {
+    grid-template-columns: 1fr;
   }
 }
