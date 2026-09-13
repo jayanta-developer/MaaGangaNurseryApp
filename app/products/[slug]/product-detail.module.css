@@ -83,6 +83,7 @@
 .lightbox {
   align-items: center;
   background: rgba(20, 29, 22, 0.9);
+  cursor: pointer;
   display: flex;
   inset: 0;
   justify-content: center;
@@ -90,14 +91,23 @@
   position: fixed;
   z-index: 50;
 }
-.lightboxImage {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 100%;
+.lightboxFrame {
+  align-items: center;
+  cursor: default;
+  display: flex;
+  justify-content: center;
   max-height: 90vh;
-  max-width: 1100px;
-  width: 100%;
+  max-width: min(82vw, 1100px);
+}
+.lightboxImage {
+  width: auto;
+  height: auto;
+  display: block;
+  /* height: min(90vh, 820px); */
+  max-height: 90vh;
+  max-width: min(82vw, 1100px);
+  object-fit: contain;
+  /* width: min(82vw, 1100px); */
 }
 .lightboxClose {
   background: #fbfaf7;

@@ -94,9 +94,29 @@ export function ProductDetail({ product }: { product: Product }) {
       )}
 
       {isLightboxOpen && (
-        <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label={`${product.name} full-screen image`} onMouseDown={(event) => { if (event.target === event.currentTarget) setIsLightboxOpen(false); }}>
-          <button className={styles.lightboxClose} type="button" onClick={() => setIsLightboxOpen(false)} aria-label="Close full-screen image">×</button>
-          <div className={styles.lightboxImage} style={{ backgroundImage: `url("${selectedImage}")` }} />
+        {/* Close only when the gray backdrop is clicked; the image frame stops propagation so clicks inside the image do not close it. */}
+        <div
+          className={styles.lightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${product.name} full-screen image`}
+          onMouseDown={(event) => {
+            const target = event.target as HTMLElement;
+            if (target.classList.contains(styles.lightbox)) setIsLightboxOpen(false);
+          }}
+        >
+          <div
+            className={styles.lightboxFrame}
+            onMouseDown={(event) => {
+              const target = event.target as HTMLElement;
+              if (target.classList.contains(styles.lightboxFrame) || target.closest(`.${styles.lightboxImage}`)) {
+                event.stopPropagation();
+              }
+            }}
+            role="presentation"
+          >
+            <img className={styles.lightboxImage} src={selectedImage} alt={product.name} />
+          </div>
         </div>
       )}
     </main>

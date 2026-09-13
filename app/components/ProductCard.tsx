@@ -7,15 +7,24 @@ export function ProductCard({ product }: { product: Product }) {
     <article className={styles.productCard}>
       <Link className={styles.productImageWrap} href={`/products/${product.slug}`} aria-label={`View ${product.name}`}>
         <span className={styles.productImage} style={{ backgroundImage: `url("${product.image}")` }} />
-        {product.tag && <span className={styles.productTag}>{product.tag}</span>}
+        {product.category && <span className={styles.productTag}>{product.category}</span>}
       </Link>
       <div className={styles.productDetails}>
         <div className={styles.productTopline}>
           <div>
-            <p className={styles.productCategory}>{product.category}</p>
-            <h3>{product.name}</h3>
+            <p className={styles.productCategory}>{product.tag}</p>
+            <h3>
+              <Link href={`/products/${product.slug}`} className={styles.productTitleLink}>
+                {product.name}
+              </Link>
+            </h3>
           </div>
-          <strong>{formatPrice(product.price)}</strong>
+          <div className={styles.productPriceBlock}>
+            {product.originalPrice && (
+              <span className={styles.originalPrice}>{formatPrice(product.originalPrice)}</span>
+            )}
+            <strong>{formatPrice(product.price)}</strong>
+          </div>
         </div>
         <p className={styles.productDescription}>{product.description}</p>
         <div className={styles.rating} aria-label={`${product.rating} out of 5 stars, ${product.reviews} reviews`}>
