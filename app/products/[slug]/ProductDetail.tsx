@@ -94,7 +94,6 @@ export function ProductDetail({ product }: { product: Product }) {
       )}
 
       {isLightboxOpen && (
-        {/* Close only when the gray backdrop is clicked; the image frame stops propagation so clicks inside the image do not close it. */}
         <div
           className={styles.lightbox}
           role="dialog"
