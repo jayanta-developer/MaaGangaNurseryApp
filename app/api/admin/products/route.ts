@@ -100,6 +100,7 @@ function validationErrors(body: Record<string, unknown>) {
   const images = Array.isArray(body.images) ? body.images.map((item) => text(item, 1000)).filter(Boolean) : [];
   const care = Array.isArray(body.care) ? body.care.map((item) => text(item, 300)).filter(Boolean) : [];
   const category = text(body.category, 100);
+  const isGardenCare = category === "Planting essential";
   const tag = text(body.tag, 40);
   const watering = text(body.watering, 160);
   const height = text(body.height, 160);
@@ -109,9 +110,13 @@ function validationErrors(body: Record<string, unknown>) {
   if (!categories.includes(category)) errors.push("category");
   if (tag && !tags.includes(tag)) errors.push("tag");
   if (!text(body.price, 40)) errors.push("price");
-  if (!wateringOptions.includes(watering) && !["Every 2–3 days", "Moisten before planting", "Drainage hole included", "Water after applying", "Rinse after use"].includes(watering)) errors.push("watering / use with");
-  if (!heightOptions.includes(height) && !legacyHeights.includes(height)) errors.push("height / details");
-  if (!potSizeOptions.includes(potSize) && !legacyPotSizes.includes(potSize)) errors.push("pot size / pack");
+  if (!isGardenCare && !wateringOptions.includes(watering) && !["Every 2–3 days", "Moisten before planting", "Drainage hole included", "Water after applying", "Rinse after use"].includes(watering)) errors.push("watering / use with");
+  if (!isGardenCare && !heightOptions.includes(height) && !legacyHeights.includes(height)) errors.push("height / details");
+  if (!isGardenCare && !potSizeOptions.includes(potSize) && !legacyPotSizes.includes(potSize)) errors.push("pot size / pack");
+  if (isGardenCare && !text(body.light, 160)) errors.push("best for");
+  if (isGardenCare && !watering) errors.push("use with");
+  if (isGardenCare && !height) errors.push("product details");
+  if (isGardenCare && !potSize) errors.push("pack includes");
   if (images.length < 3) errors.push("at least three image URLs");
   if (care.length < 1) errors.push("at least one care point");
   return errors;
