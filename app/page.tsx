@@ -30,7 +30,7 @@ export default async function Home() {
           </div>
 
           <div className={styles.productGrid} id="all-products">
-            {products.filter((product) => product.productType === "plant").slice(0, 8).map((product) => (
+            {products.reverse().filter((product) => product.productType === "plant").slice(0, 8).map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>

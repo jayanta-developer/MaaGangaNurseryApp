@@ -57,6 +57,8 @@ export function AdminClient() {
   const [slugEdited, setSlugEdited] = useState(false);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
+  const [categorySearchOpen, setCategorySearchOpen] = useState<Record<string, boolean>>({});
+  const [categorySearchQueries, setCategorySearchQueries] = useState<Record<string, string>>({});
 
   async function loadProducts() {
     const response = await fetch("/api/admin/products", { cache: "no-store" });
@@ -177,6 +179,20 @@ export function AdminClient() {
       name: value,
       slug: slugEdited ? current.slug : slugify(value),
     }));
+  const groupedProducts = products.reduce<Record<string, Product[]>>(
+    (groups, product) => {
+      (groups[product.category] ??= []).push(product);
+      return groups;
+    },
+    {},
+  );
+  const categoryGroups = Object.entries(groupedProducts).sort(
+    ([categoryA], [categoryB]) => {
+      const rankA = categories.indexOf(categoryA as (typeof categories)[number]);
+      const rankB = categories.indexOf(categoryB as (typeof categories)[number]);
+      return (rankA < 0 ? categories.length : rankA) - (rankB < 0 ? categories.length : rankB);
+    },
+  );
   return (
     <main className={styles.page}>
       <header className={styles.header}>
@@ -204,26 +220,121 @@ export function AdminClient() {
           >
             + New product
           </button>
-          {products.map((product) => (
-            <button
-              className={
-                form.id === product.id
-                  ? styles.productActive
-                  : styles.productItem
-              }
-              key={product.id}
-              onClick={() => {
-                setForm({
-                  ...product,
-                  images: [...product.images],
-                  care: [...product.care],
-                });
-                setSlugEdited(true);
-              }}
-            >
-              <span>{product.name}</span>
-              <small>{product.category}</small>
-            </button>
+          {categoryGroups.map(([category, categoryProducts]) => (
+            <details key={category}>
+              <summary
+                style={{
+                  alignItems: "center",
+                  color: "#697168",
+                  cursor: "pointer",
+                  display: "flex",
+                  fontSize: 10,
+                  fontWeight: 600,
+                  justifyContent: "space-between",
+                  letterSpacing: 1,
+                  padding: "8px 4px",
+                  textTransform: "uppercase",
+                }}
+              >
+                <span>{category}</span>
+                <span>{categoryProducts.length}</span>
+              </summary>
+              <div
+                style={{
+                  alignItems: "center",
+                  border: categorySearchOpen[category] ? "1px solid #dde2d8" : 0,
+                  display: "flex",
+                  gap: 6,
+                  margin: categorySearchOpen[category] ? "2px 0 6px" : 0,
+                  minHeight: categorySearchOpen[category] ? 30 : 0,
+                  padding: categorySearchOpen[category] ? "2px 5px" : 0,
+                }}
+              >
+                <button
+                  type="button"
+                  aria-label={categorySearchOpen[category] ? `Close search for ${category}` : `Search ${category} products`}
+                  onClick={() => {
+                    const isOpen = categorySearchOpen[category];
+                    setCategorySearchOpen((current) => ({ ...current, [category]: !isOpen }));
+                    if (isOpen) {
+                      setCategorySearchQueries((current) => ({ ...current, [category]: "" }));
+                    }
+                  }}
+                  style={{
+                    background: "transparent",
+                    border: 0,
+                    color: "#3f794b",
+                    cursor: "pointer",
+                    fontSize: 17,
+                    lineHeight: 1,
+                    padding: "3px 4px",
+                  }}
+                >
+                  {categorySearchOpen[category] ? "x" : "⌕"}
+                </button>
+                {categorySearchOpen[category] && (
+                  <input
+                    autoFocus
+                    value={categorySearchQueries[category] ?? ""}
+                    onChange={(event) => setCategorySearchQueries((current) => ({ ...current, [category]: event.target.value }))}
+                    placeholder="Search products"
+                    aria-label={`Search ${category} products`}
+                    style={{
+                      background: "transparent",
+                      border: 0,
+                      color: "#20221d",
+                      flex: 1,
+                      font: "inherit",
+                      fontSize: 11,
+                      minWidth: 0,
+                      outline: 0,
+                      padding: "4px 2px",
+                    }}
+                  />
+                )}
+              </div>
+              <div style={{ maxHeight: 392, overflowY: "auto" }}>
+                {categoryProducts
+                  .filter((product) => product.name.toLowerCase().includes((categorySearchQueries[category] ?? "").trim().toLowerCase()))
+                  .map((product) => (
+                  <button
+                    className={
+                      form.id === product.id
+                        ? styles.productActive
+                        : styles.productItem
+                    }
+                    style={{ alignItems: "center", display: "flex", gap: 10,width:"100%" }}
+                    key={product.id}
+                    onClick={() => {
+                      setForm({
+                        ...product,
+                        images: [...product.images],
+                        care: [...product.care],
+                      });
+                      setSlugEdited(true);
+                    }}
+                  >
+                    <span
+                      aria-hidden="true"
+                      style={{
+                        backgroundColor: "#e8ede4",
+                        backgroundImage: `url("${product.images[0] || product.image}")`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        display: "block",
+                        flex: "0 0 48px",
+                        height: 48,
+                        width: 48,
+                      }}
+                    />
+                    <span style={{ minWidth: 0 }}>
+                      <span>{product.name}</span>
+                      <small>{product.category}</small>
+                    </span>
+                  </button>
+                  ))}
+              </div>
+            </details>
           ))}
         </aside>
         <section className={styles.editor}>
@@ -265,10 +376,15 @@ export function AdminClient() {
                   value={form.category}
                   onChange={(event) => {
                     const category = event.target.value;
+                    const isGardenCare = category === "Planting essential";
                     setForm((current) => ({
                       ...current,
                       category,
-                      productType: category === "Planting essential" ? "garden-care" : "plant",
+                      productType: isGardenCare ? "garden-care" : "plant",
+                      light: isGardenCare ? "" : current.light,
+                      watering: isGardenCare ? "" : current.watering,
+                      height: isGardenCare ? "" : current.height,
+                      potSize: isGardenCare ? "" : current.potSize,
                     }));
                   }}
                   required
@@ -295,16 +411,6 @@ export function AdminClient() {
                 >
                   <option value="">No tag</option>
                   {tags.map((tag) => <option key={tag} value={tag}>{tag}</option>)}
-                </select>
-              </label>
-              <label>
-                Type
-                <select
-                  value={form.productType}
-                  onChange={(event) => update("productType", event.target.value)}
-                >
-                  <option value="plant">Plant</option>
-                  <option value="garden-care">Garden care</option>
                 </select>
               </label>
               <Field
@@ -348,40 +454,66 @@ export function AdminClient() {
                 </label>
               ))}
             </div>
-            <div className={styles.fields}>
-              <label>
-                Light / best for
-                <select
+            {form.productType === "plant" && (
+              <div className={styles.fields}>
+                <label>
+                  Light / best for
+                  <select
+                    value={form.light}
+                    onChange={(event) => update("light", event.target.value)}
+                    required
+                  >
+                    <option value="" disabled>Select an option</option>
+                    {optionsWithCurrent(lightOptions, form.light).map((option) => <option key={option} value={option}>{option}</option>)}
+                  </select>
+                </label>
+                <SelectField
+                  label="Watering / use with"
+                  value={form.watering}
+                  options={optionsWithCurrent(wateringOptions, form.watering)}
+                  onChange={(value) => update("watering", value)}
+                />
+                <SelectField
+                  label="Height / details"
+                  value={form.height}
+                  options={optionsWithCurrent(heightOptions, form.height)}
+                  onChange={(value) => update("height", value)}
+                />
+                <SelectField
+                  label="Pot size / pack"
+                  value={form.potSize}
+                  options={optionsWithCurrent(potSizeOptions, form.potSize)}
+                  onChange={(value) => update("potSize", value)}
+                />
+              </div>
+            )}
+            {form.productType === "garden-care" && (
+              <div className={styles.fields}>
+                <Field
+                  label="Best for"
                   value={form.light}
-                  onChange={(event) => update("light", event.target.value)}
-                  required
-                >
-                  <option value="" disabled>Select an option</option>
-                  {optionsWithCurrent(lightOptions, form.light).map((option) => <option key={option} value={option}>{option}</option>)}
-                </select>
-              </label>
-              <SelectField
-                label="Watering / use with"
-                value={form.watering}
-                options={optionsWithCurrent(wateringOptions, form.watering)}
-                onChange={(value) => update("watering", value)}
-              />
-              <SelectField
-                label="Height / details"
-                value={form.height}
-                options={optionsWithCurrent(heightOptions, form.height)}
-                onChange={(value) => update("height", value)}
-              />
-              <SelectField
-                label="Pot size / pack"
-                value={form.potSize}
-                options={optionsWithCurrent(potSizeOptions, form.potSize)}
-                onChange={(value) => update("potSize", value)}
-              />
-            </div>
+                  onChange={(value) => update("light", value)}
+                />
+                <Field
+                  label="Use with"
+                  value={form.watering}
+                  onChange={(value) => update("watering", value)}
+                />
+                <Field
+                  label="Product details"
+                  value={form.height}
+                  onChange={(value) => update("height", value)}
+                />
+                <Field
+                  label="Pack includes"
+                  value={form.potSize}
+                  onChange={(value) => update("potSize", value)}
+                />
+              </div>
+            )}
             <div className={styles.careEditor}>
-              <h3>Care instructions</h3>
-              <p>Each field is saved as one separate care point.</p>
+              <h3>{form.productType === "plant" ? "Care instructions" : "Usage instructions"}</h3>
+              <p>Each field is saved as one separate instruction.</p>
               {form.care.map((instruction, index) => (
                 <div className={styles.careRow} key={index}>
                   <label>
